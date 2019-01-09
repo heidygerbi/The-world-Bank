@@ -2,50 +2,13 @@
 /* global WORLDBANK:true */
 /* eslint no-undef: 'error' */
 require('../src/data.js');
-<<<<<<< HEAD
-describe('WORLDBANCK', () => {
-  it('Debería ser un objeto', () => {
-    expect(typeof WORLDBANCK).toBe('object');
-  });
-  // describe('WORLDBANCK.searchTotal', () => {
-  //   it('debería ser una función', () => {
-  //     expect(typeof WORLDBANCK.searchTotal).toBe('function');
-  //   });
-  //   it('debería retornar un array de objetos, con el valor de la propiedad name en mayusculas', () => {
-  //     expect(potter.cambiarPropiedad(input)).toEqual(output);
-  //   });
-  //   it('debería retornar un nuevo array, no modificar el original', () => {
-  //     expect(potter.cambiarPropiedad(input)).not.toEqual(input);
-  //   });
-  // });
-  // describe('potter.agregaPropiedad', () => {
-  //   it('debería ser una función', () => {
-  //     expect(typeof potter.agregaPropiedad).toBe('function');
-  //   });
-  //   it('deberia agregar la propiedad insignia a todos los estudiantes de hogwarts', () => {
-  //     expect(potter.agregaPropiedad(input)).toEqual(output2);
-  //   });
-  //   it('debería retornar un nuevo array, no cambiar el array original', () => {
-  //     expect(potter.agregaPropiedad(input)).not.toEqual(input);
-  //   });
-  // });
-  // describe('potter.filtrarCasasUnicas', () => {
-  //   it('debería ser una función', () => {
-  //     expect(typeof potter.filtrarCasasUnicas).toBe('function');
-  //   });
-  //   it('debería retornar un nuevo array con las casas de howards de manera única', () => {
-  //     expect(potter.filtrarCasasUnicas(input)).toEqual(output3);
-  //   });
-  // });
-});
-=======
 const country = ['PER'];
 const arrYear = ['2016', '2017'];
 const ind = 'SL.TLF.ACTI.FE.ZS';
 const matrixFilter = [['71.57', '72.15']];
 const matrix = [['71.57', '72.15'], ['57.04', '57.50']];
 const matrixAsc = [['72.15', '71.57'], ['57.50', '57.04']];
-const prom = ['71.50', '57.00'];
+const prom = ['71.86', '57.27'];
 
 WORLDBANK = {
   'PER': {
@@ -123,4 +86,3 @@ describe('worldbank.filterData', () => {
 //     expect(potter.filtrarCasasUnicas(input)).toEqual(output3);
 //   });
 // });
->>>>>>> 971c3a599035c40da00c09d24a77f83dd0f6ecef

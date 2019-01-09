@@ -44,40 +44,22 @@
           <fieldset>
             <legend>PRINCIPALES INDICADORES</legend>
             <div id="container-btn-main">
-              <button type="button" id="SH" class="btn-main">Anemia</button>
-              <!--SH.ANM.ALLW.ZS-->
-              <button type="button" id="SG" class="btn-main">Violencia</button>
-              <!--SG.VAW.REAS.ZS-->
-              <button type="button" id="SP" class="btn-main">Población</button>
-              <!--SP.POP.TOTL.FE.ZS-->
-              <button type="button" id="IC" class="btn-main">Emprendimiento</button>
-              <!--IC.REG.DURS.FE-->
-              <button type="button" id="ICF" class="btn-main">Empresas</button>
-              <!--IC.FRM.FEMM.ZS-->
-              <button type="button" id="COV" class="btn-main">Empleos</button>
-              <!--per_allsp.cov_pop_tot-->
+              <button type="button" id="SH" class="btn-main" value="SH.ANM.ALLW.ZS">Anemia</button>
+              <button type="button" id="SG" class="btn-main" value="SG.VAW.REAS.ZS">Violencia</button>
+              <button type="button" id="SP" class="btn-main" value="SP.POP.TOTL.FE.ZS">Población</button>
+              <button type="button" id="IC" class="btn-main" value="IC.REG.DURS.FE">Emprendimiento</button>
+              <button type="button" id="ICF" class="btn-main" value="IC.FRM.FEMM.ZS">Empresas</button>
+              <button type="button" id="COV" class="btn-main" value="per_allsp.cov_pop_tot">Empleos</button>
             </div>
-
-            <div id="caption">Titulo de ind</div>
+            <div id="caption"></div>
             <section id="information">
-              <div class="table-wrapper">
-                <table id="table_result">
-                  <thead id="title_table">
-                    <tr>
-                      <th>hola</th>
-                      <th>you</th>
-                    </tr>
-                  </thead>
-                  <tbody id="content_table">
-                  </tbody>
-                </table>
+              <div id="table-wrapper">
               </div>
             </section>
           </fieldset>
         </div>
         <div class="col-1"></div>
       </div>
-
     </div>
     <div id="search" class="hide">
       <div class="row">
@@ -86,14 +68,14 @@
             <form id="frm-search" name="frm">
               <div id="select-country">
                 <label class="sub-button">PAISES</label>
-                <label><input type="checkbox" name="country[]" value="PER" checked>Perú</label>
-                <label><input type="checkbox" name="country[]" value="CHL" checked>Chile</label>
-                <label><input type="checkbox" name="country[]" value="MEX" checked>México</label>
-                <label><input type="checkbox" name="country[]" value="BRA" checked>Brasil</label>
+                <label><input type="checkbox" name="country[]" value="PER">Perú</label>
+                <label><input type="checkbox" name="country[]" value="CHL">Chile</label>
+                <label><input type="checkbox" name="country[]" value="MEX">México</label>
+                <label><input type="checkbox" name="country[]" value="BRA">Brasil</label>
               </div>
               <div id="select-laboral-force">
                 <label class="sub-button">INDICADOR</label>
-                <label><input type="radio" name="category[]" value="SL.TLF.BASC.ZS" checked>Fuerza laboral
+                <label><input type="radio" name="category[]" value="SL.TLF.BASC.ZS">Fuerza laboral
                   con educación básica</label>
                 <label><input type="radio" name="category[]" value="SL.TLF.INTM.ZS">Fuerza laboral
                   con educación intermedia</label>
@@ -104,7 +86,7 @@
               </div>
               <div id="select-sex">
                 <label class="sub-button">GENERO</label>
-                <label><input type="radio" name="sex[]" value="FE" checked>Femenino</label>
+                <label><input type="radio" name="sex[]" value="FE">Femenino</label>
                 <label><input type="radio" name="sex[]" value="MA">Masculino</label>
               </div>
               <div id="date">
@@ -118,23 +100,24 @@
             </form>
           </aside>
         </div>
-      </div>
-      <div class="col-8">
-        <fieldset id="table-result" class="hide">
-          <div  id="table-container"></div>
-        
-          <ul class="button" id="btn-order">
-              <li><span id="order-asc">ASC</span></li>
-              <li><span id="order-desc">DESC</span></li>
+        <div class="col-8">
+          <fieldset id="table-result" class="hide">
+            <div id="table-container">
+              <!-- <div  id="table-container-unique"></div> -->
+            </div>
+            <ul class="button" id="btn-order">
+              <li><span id="order-asc">ORDENAR RESULTADOS</span></li>
             </ul>
-        <div id="table-prom"></div>
-    </fieldset>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <footer>Developed by: Pilar Varillas & Heidy Gerbi - © Copy Left 2018</footer>
+            <div id="table-prom"></div>
+          </fieldset>
+        </div>
       </div>
     </div>
+      <div class="row">
+        <div class="col-12">
+          <footer>Developed by: Pilar Varillas & Heidy Gerbi - © Copy Left 2018</footer>
+        </div>
+      </div>
   </main>
   <script src="./data/worldbank/worldbank.js"></script>
   <script src="data.js"></script>

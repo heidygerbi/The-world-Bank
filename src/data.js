@@ -1,32 +1,28 @@
-// variables globales 
-/* global WORLDBANK:true */
-/* eslint no-undef: "error" */
 /* *********** FUNCIONES PARA CREAR TABLAS DINÁMICAS *********** */
 // Función para conocer caption de indicators
 
 const indicatiorsCaption = (indicatorsArr, ind) => {
-  // indicatorsArr = WORLDBANK[element].indicators;
   let indicatorNameArr = [];
   indicatorNameArr = indicatorsArr.filter(populationElement => populationElement.indicatorCode === ind);
   return indicatorNameArr;
 };
-
+const caption = (ind) => {
+  const dir = WORLDBANK.PER.indicators;
+  let indicatorNameArr = [];
+  indicatorNameArr = dir.filter(populationElement => populationElement.indicatorCode === ind);
+  return (indicatorNameArr[0].indicatorName);
+};
 /* *********** FUNCIONES ESPECIALIZADAS *********** */
 // Función con filterData 
 const filterData = (country, arrYear, ind) => {
   let matrix = [];
-  // let nameLimit = 0;
   country.forEach((element) => {
     let indicatorDateArr = [];
     let indicatorResult = [];
     let indicatorNameArr = [];
     const indicatorsArr = WORLDBANK[element].indicators;
-    // console.log(indicator)
     indicatorNameArr = indicatiorsCaption(indicatorsArr, ind);
     indicatorDateArr = indicatorNameArr[0].data;
-    // if (nameLimit === 0) addTableCaption(indicatorNameArr[0].indicatorName);
-    // nameLimit++;
-    // console.log(indicatorDateArr);
     for (let prop in indicatorDateArr) {
       if (prop >= arrYear[0] && prop <= arrYear[1]) { // prop hace referencia a la propiedad del objeto (en este caso años)
         let indDateArrTwoDec = 0;
@@ -43,20 +39,17 @@ const filterData = (country, arrYear, ind) => {
 // Función para promedio
 const computeStats = (array) => {
   let prom = [];
-  let j = 0;
   let sum = 0;
   array.forEach(element => {
+    let j = 0;
     sum = element.reduce((previous, current) => {
-      console.log(current);
-      console.log(previous);
-      if (current != '' || current !== undefined || previous !== isNaN) {
-        console.log('soy current'+current);
-        console.log('soy previous'+previous);
+      if (current !== '') {
         j++;
-        return (parseInt(previous) + parseInt(current));
+        const sumRound = (parseFloat(previous) + parseFloat(current)).toFixed(2);
+        return sumRound;
       }
+      return previous;
     }, 0);
-    console.log(sum);
     let avg = sum / j;
     prom.push(avg.toFixed(2));
   });
@@ -66,14 +59,13 @@ const computeStats = (array) => {
 const sortData = (data, sortOrder) => {
   if (sortOrder === 'asc') {
     let reversed = [];
-    // console.log(data);
     let copyData = [...data];
-    // console.log(copyData);
     for (let i = 0; i < copyData.length; i++) {
       reversed.push(copyData[i].reverse());
     }
     return reversed;
-  } else if (sortOrder === 'desc') return data;
+  }
+
 };
 
 
@@ -88,5 +80,6 @@ window.worldbank = {
   sortData,
   computeStats,
   indicatiorsCaption,
-  filterData
+  filterData,
+  caption
 };

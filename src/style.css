@@ -123,7 +123,8 @@ margin-left: 25%;
     .table-rwd tr td:nth-child(2n) {
       background: rgba(181, 213, 144, 0.2); } */
   
-  #table-container {
+  #table-container-unique {
+      width: 500px;
     overflow-x:auto; }
   
   /* .table-rwd {
@@ -143,6 +144,7 @@ margin-left: 25%;
 
 table {
   border-collapse: collapse;
+  
   margin: 3em 0 3em 5em;
 }
 
@@ -209,11 +211,21 @@ li span {
     float: left;
     padding: 2%;
     margin: 0.3%;
-    width: 15.7%;
     color: #fff;
     border-radius: 5px;
- 
-}
+ }
+
+.sub-button{
+   position: relative;
+width: 70%;
+height: 2em;
+
+
+background: #99DFF9;
+border-radius: 0px 30px 30px 0px;
+background: #99DFF9;
+border-radius: 0px 30px 30px 0px;
+    }
 @keyframes cambio{
     0%{margin-left: 0%;}
     30%{margin-left: 0%;}

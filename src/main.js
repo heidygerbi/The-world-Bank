@@ -1,9 +1,7 @@
-﻿/* global worldbank:true */
-/* eslint no-undef: "error" */
-let matrix = [];
+﻿let matrix = [];
 let dateRange = [];
 let ElementClick = '';
-
+let bool = true;
 // btn-submit
 const btnSubmit = document.getElementById('btn-submit');
 let btnIndex = document.getElementById('btn-index');
@@ -14,7 +12,7 @@ btnSubmit.addEventListener('click', () => {
   document.getElementById('table-container').innerHTML = '';
   document.getElementById('table-prom').innerHTML = '';
   matrix = worldbank.filterData(searchMutipleCountry(), searchRangeYear(), indicator());
-  generateTable(matrix, 'desc');
+  generateTable(matrix, 'table-container');
   generateSumaryTable(worldbank.computeStats(matrix), searchMutipleCountry());
 });
 
@@ -56,23 +54,31 @@ const generateSumaryTable = (prom, arrCountry) => {
 };
 
 const generateTable = (matr, origin) => {
+
+  document.getElementById(origin).innerHTML = '';
+
+  const indicator2 = indicator();
+  const caption = worldbank.caption(indicator2);
   // Obtener la referencia del elemento body
-  const body = document.getElementById('table-container');
+  const body = document.getElementById(origin);
   // Crea un elemento <table> y un elemento <tbody>
   // let caption =worldbank.indicatiorsCaption();
+  const divTable = document.createElement('DIV');
+  divTable.setAttribute('id', 'table-container-unique');
   const tabla = document.createElement('TABLE');
   const tblBody = document.createElement('TBODY');
 
   const arrCountry = searchMutipleCountry();
   const range = searchRangeYear();
 
-  const node = document.createElement('CAPTION');
-  const textnode = document.createTextNode(`, del ${dateRange[0]} al ${dateRange[1]}`); // ${caption}
+  const node = document.createElement('H3');
+  const textnode = document.createTextNode(`${caption}, del ${dateRange[0]} al ${dateRange[1]}`);
   node.appendChild(textnode);
-
-
+  body.appendChild(node);
+  body.appendChild(divTable);
   const hileraYear = document.createElement('TR');
-  if (origin === 'desc') {
+
+  if (bool) {
     for (let i = range[0] - 1; i <= range[1]; i++) {
       const celdaYear = document.createElement('TH');
       let textoCeldaYear = document.createTextNode(i);
@@ -81,8 +87,9 @@ const generateTable = (matr, origin) => {
       }
       celdaYear.appendChild(textoCeldaYear);
       hileraYear.appendChild(celdaYear);
+      bool = false;
     }
-  } else if (origin === 'asc') {
+  } else {
     for (let i = range[1]; i >= range[0] - 1; i--) {
       const celdaYear = document.createElement('TH');
       let textoCeldaYear = document.createTextNode(i + 1);
@@ -91,7 +98,7 @@ const generateTable = (matr, origin) => {
       }
       celdaYear.appendChild(textoCeldaYear);
       hileraYear.appendChild(celdaYear);
-    }
+    } bool = true;
   }
   tblBody.appendChild(hileraYear);
   // Crea las celdas
@@ -117,17 +124,7 @@ const generateTable = (matr, origin) => {
   // posiciona el <tbody> debajo del elemento <table>
   tabla.appendChild(tblBody);
   // appends <table> into <body>
-  body.appendChild(tabla);
-};
-
-let addTableCaption = (indi) => {
-  const dateRange = searchRangeYear();
-  indicator(indi);
-  let caption = worldbank.indicatiorsCaption();
-  const node = document.createElement('H3');
-  const textnode = document.createTextNode(`${caption}, del ${dateRange[0]} al ${dateRange[1]}`);
-  node.appendChild(textnode);
-  document.getElementById('caption').appendChild(node);
+  divTable.appendChild(tabla);
 };
 
 /* *********** FUNCIONES PARA MENÚ DE BÚSQUEDA *********** */
@@ -177,13 +174,6 @@ const indicator = () => { // ind
   else if (IndicatorString === 'SL.TLF.ADVN.ZS' && sexString === 'MA') indicator = 'SL.TLF.ADVN.MA.ZS';
   else if (IndicatorString === 'SL.TLF.ACTI.ZS' && sexString === 'FE') indicator = 'SL.TLF.ACTI.FE.ZS';
   else if (IndicatorString === 'SL.TLF.ACTI.ZS' && sexString === 'MA') indicator = 'SL.TLF.ACTI.MA.ZS';
-  // else if (ind === 'SH') indicator = 'SH.ANM.ALLW.ZS';
-  // else if (ind === 'SG') indicator = 'SG.VAW.REAS.ZS';
-  // else if (ind === 'SP') indicator = 'SP.POP.TOTL.FE.ZS';
-  // else if (ind === 'IC') indicator = 'IC.REG.DURS.FE';
-  // else if (ind === 'ICF') indicator = 'IC.FRM.FEMM.ZS';
-  // else if (ind === 'COV') indicator = 'per_allsp.cov_pop';
-  // console.log(indicator);
   return indicator;
 };
 
@@ -200,43 +190,106 @@ btnSearch.addEventListener('click', () => {
   hidenDiv('search', 'index');
 });
 
+
+
+const printMainIndicators = (paramIndicator) => {
+  const arrCountry = ['PER', 'CHL', 'MEX', 'BRA'];
+  const arrYear = ['2012', '2017'];
+  document.getElementById('caption').innerHTML = '';
+  document.getElementById('table-wrapper').innerHTML = '';
+  const ind2 = document.getElementById(paramIndicator).value;
+  document.getElementById('caption').innerHTML = worldbank.caption(ind2);
+  generateTableMainIndicators(worldbank.filterData(arrCountry, arrYear, ind2), 'table-wrapper');
+};
 document.onclick = captureClick;
 function captureClick(element) {
+  // Funcion para capturar el click del raton
   let click;
-  if (element !== null) click = element.target;
+  if (element !== null) {
+    // Si ha hecho click sobre un destino, lo leemos
+    click = element.target;
+  }
+  // Añadimos el elemento al array de elementos
   ElementClick = click;
+  // Una prueba con salida en consola
   switch (ElementClick.id) {
   case 'SH':
-    addTableCaption('SH');
+    printMainIndicators(ElementClick.id);
     break;
   case 'SG':
-    indicator('SG');
+    printMainIndicators(ElementClick.id);
     break;
   case 'SP':
-    indicator('SP');
+    printMainIndicators(ElementClick.id);
     break;
   case 'IC':
-    indicator('IC');
+    printMainIndicators(ElementClick.id);
     break;
   case 'ICF':
-    indicator('ICF');
+    printMainIndicators(ElementClick.id);
     break;
   case 'COV':
-    indicator('COV');
+    printMainIndicators(ElementClick.id);
     break;
   }
 }
-
 // btn-order-asc
 const btnOrderAsc = document.getElementById('order-asc');
 btnOrderAsc.addEventListener('click', () => {
   let resultMatrix = worldbank.sortData(matrix, 'asc');
-  generateTable(resultMatrix, 'asc');
+  generateTable(resultMatrix, 'table-container');
 });
 
-// btn-order-desc
-const btnOrderDesc = document.getElementById('order-desc');
-btnOrderDesc.addEventListener('click', () => {
-  let resultMatrix = worldbank.sortData(matrix, 'desc');
-  generateTable(resultMatrix, 'desc');
-});
+
+
+const generateTableMainIndicators = (matr, origin) => {
+
+  document.getElementById(origin).innerHTML = '';
+  // Obtener la referencia del elemento body
+  const body = document.getElementById(origin);
+  // Crea un elemento <table> y un elemento <tbody>
+  const tabla = document.createElement('TABLE');
+  const tblBody = document.createElement('TBODY');
+
+
+  const arrCountry = ['PER', 'CHL', 'MEX', 'BRA'];
+  const range = ['2012', '2017'];
+  const hileraYear = document.createElement('TR');
+
+  for (let i = range[0] - 1; i <= range[1]; i++) {
+    const celdaYear = document.createElement('TH');
+    let textoCeldaYear = document.createTextNode(i);
+    if (i === range[0] - 1) {
+      textoCeldaYear = document.createTextNode('País');
+    }
+    celdaYear.appendChild(textoCeldaYear);
+    hileraYear.appendChild(celdaYear);
+
+  }
+
+  tblBody.appendChild(hileraYear);
+  // Crea las celdas
+  for (let i = 0; i < matr.length; i++) {
+    // Crea las hileras de la tabla
+    const hilera = document.createElement('TR');
+    const celdaTitulo = document.createElement('TH');
+    const textoCeldaTitulo = document.createTextNode(arrCountry[i]);
+    celdaTitulo.appendChild(textoCeldaTitulo);
+    hilera.appendChild(celdaTitulo);
+    for (let j = 0; j < matr[i].length; j++) {
+      // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+      // texto sea el contenido de <td>, ubica el elemento <td> al final
+      // de la hilera de la tabla
+      const celda = document.createElement('TD');
+      const textoCelda = document.createTextNode(matr[i][j]);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+    }
+    // agrega la hilera al final de la tabla (al final del elemento tblbody)
+    tblBody.appendChild(hilera);
+  }
+  // posiciona el <tbody> debajo del elemento <table>
+  tabla.appendChild(tblBody);
+  // appends <table> into <body>
+  body.appendChild(tabla);
+};
