@@ -32,7 +32,8 @@
     </div>
     <div id="index" class="show">
       <div class="row">
-        <div class="col-12">
+        <div class="col-1"></div>
+        <div class="col-10">
           <div class="slider">
             <ul>
               <li><img src="../img/slider/1.png" alt="¿Qué es el Banco Mundial?"></li>
@@ -40,64 +41,59 @@
               <li><img src="../img/slider/3.png" alt="¿Qué ofrece esta página?"></li>
             </ul>
           </div>
+          <fieldset>
+            <legend>PRINCIPALES INDICADORES</legend>
+            <div id="container-btn-main">
+              <button type="button" id="SH" class="btn-main">Anemia</button>
+              <!--SH.ANM.ALLW.ZS-->
+              <button type="button" id="SG" class="btn-main">Violencia</button>
+              <!--SG.VAW.REAS.ZS-->
+              <button type="button" id="SP" class="btn-main">Población</button>
+              <!--SP.POP.TOTL.FE.ZS-->
+              <button type="button" id="IC" class="btn-main">Emprendimiento</button>
+              <!--IC.REG.DURS.FE-->
+              <button type="button" id="ICF" class="btn-main">Empresas</button>
+              <!--IC.FRM.FEMM.ZS-->
+              <button type="button" id="COV" class="btn-main">Empleos</button>
+              <!--per_allsp.cov_pop_tot-->
+            </div>
+
+            <div id="caption">Titulo de ind</div>
+            <section id="information">
+              <div class="table-wrapper">
+                <table id="table_result">
+                  <thead id="title_table">
+                    <tr>
+                      <th>hola</th>
+                      <th>you</th>
+                    </tr>
+                  </thead>
+                  <tbody id="content_table">
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </fieldset>
         </div>
+        <div class="col-1"></div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="buttons_span" id="span">
-            <button type="button" id="SH">Anemia en mujeres en edad fértil (15 y 49 años)</button>
-            <!--SH.ANM.ALLW.ZS-->
-            <button type="button" id="SG">Mujeres que creen que está justificado que un marido golpee a su esposa (por
-              cualquier motivo)</button>
-            <!--SG.VAW.REAS.ZS-->
-            <button type="button" id="SP">Población, mujeres (% del total)</button>
-            <!--SP.POP.TOTL.FE.ZS-->
-            <button type="button" id="IC">Tiempo necesario para iniciar un negocio, mujeres (días)</button>
-            <!--IC.REG.DURS.FE-->
-            <button type="button" id="ICF">Porcentaje de empresas con manager mujer (promedio entre empresas que
-              reportan)</button>
-            <!--IC.FRM.FEMM.ZS-->
-            <button type="button" id="COV">Cobertura de los programas de trabajo y protección social (% de la
-              población)</button>
-            <!--per_allsp.cov_pop_tot-->
-          </div>
-        </div>
-      </div>
-      <div id="caption"></div>
-      <div class="col-8">
-        <section id="information">
-          <div class="table-wrapper">
-            <table id="table_result">
-              <thead id="title_table">
-                <tr>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="content_table">
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
+
     </div>
     <div id="search" class="hide">
-
-
       <div class="row">
         <div class="col-4">
           <aside id="menu-left">
             <form id="frm-search" name="frm">
               <div id="select-country">
-                <label>PAISES</label>
-                <label><input type="checkbox" name="country[]" value="PER">Perú</label>
-                <label><input type="checkbox" name="country[]" value="CHL">Chile</label>
-                <label><input type="checkbox" name="country[]" value="MEX">México</label>
-                <label><input type="checkbox" name="country[]" value="BRA">Brasil</label>
+                <label class="sub-button">PAISES</label>
+                <label><input type="checkbox" name="country[]" value="PER" checked>Perú</label>
+                <label><input type="checkbox" name="country[]" value="CHL" checked>Chile</label>
+                <label><input type="checkbox" name="country[]" value="MEX" checked>México</label>
+                <label><input type="checkbox" name="country[]" value="BRA" checked>Brasil</label>
               </div>
               <div id="select-laboral-force">
-                <label>INDICADOR</label>
-                <label><input type="radio" name="category[]" value="SL.TLF.BASC.ZS">Fuerza laboral
+                <label class="sub-button">INDICADOR</label>
+                <label><input type="radio" name="category[]" value="SL.TLF.BASC.ZS" checked>Fuerza laboral
                   con educación básica</label>
                 <label><input type="radio" name="category[]" value="SL.TLF.INTM.ZS">Fuerza laboral
                   con educación intermedia</label>
@@ -107,34 +103,32 @@
                   participación en la fuerza laboral</label>
               </div>
               <div id="select-sex">
-                <label>GENERO</label>
-                <label><input type="radio" name="sex[]" value="FE">Femenino</label>
+                <label class="sub-button">GENERO</label>
+                <label><input type="radio" name="sex[]" value="FE" checked>Femenino</label>
                 <label><input type="radio" name="sex[]" value="MA">Masculino</label>
               </div>
               <div id="date">
-                <label>FECHA</label>
-                <label>Desde<input type="number" id="date-one" max="2017" min="2010" maxlength="4" value="2017"></label>
+                <label class="sub-button">FECHA</label>
+                <label>Desde<input type="number" id="date-one" max="2017" min="2010" maxlength="4" value="2010"></label>
                 <label>Hasta<input type="number" id="date-two" max="2017" min="2010" maxlength="4" value="2017"></label>
               </div>
               <div id="btn-enviar">
-                <input type="button" value="buscar" id="btn-submit" class="">
+                <input type="button" value="BUSCAR" id="btn-submit">
               </div>
             </form>
           </aside>
         </div>
       </div>
       <div class="col-8">
-        <section id="information1">
-          <div id="f"></div>
-          <div class="table-wrapper">
-            <ul class="button">
+        <fieldset id="table-result" class="hide">
+          <div  id="table-container"></div>
+        
+          <ul class="button" id="btn-order">
               <li><span id="order-asc">ASC</span></li>
               <li><span id="order-desc">DESC</span></li>
             </ul>
-          </div>
-          <span id="prom"></span>
-        </section>
-      </div>
+        <div id="table-prom"></div>
+    </fieldset>
     </div>
     <div class="row">
       <div class="col-12">

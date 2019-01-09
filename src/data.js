@@ -43,10 +43,22 @@ const filterData = (country, arrYear, ind) => {
 // Función para promedio
 const computeStats = (array) => {
   let prom = [];
+  let j = 0;
+  let sum = 0;
   array.forEach(element => {
-    let sum = element.reduce((previous, current) => {return (parseInt(previous) + parseInt(current))}, 0);
-    let avg = sum / element.length;
-    prom.push(avg.toFixed(2));    
+    sum = element.reduce((previous, current) => {
+      console.log(current);
+      console.log(previous);
+      if (current != '' || current !== undefined || previous !== isNaN) {
+        console.log('soy current'+current);
+        console.log('soy previous'+previous);
+        j++;
+        return (parseInt(previous) + parseInt(current));
+      }
+    }, 0);
+    console.log(sum);
+    let avg = sum / j;
+    prom.push(avg.toFixed(2));
   });
   return prom;
 };

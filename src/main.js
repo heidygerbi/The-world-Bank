@@ -9,13 +9,17 @@ const btnSubmit = document.getElementById('btn-submit');
 let btnIndex = document.getElementById('btn-index');
 let btnSearch = document.getElementById('btn-search');
 btnSubmit.addEventListener('click', () => {
+  document.getElementById('table-result').style.display = 'block';
+  document.getElementById('btn-order').style.display = 'block';
+  document.getElementById('table-container').innerHTML = '';
+  document.getElementById('table-prom').innerHTML = '';
   matrix = worldbank.filterData(searchMutipleCountry(), searchRangeYear(), indicator());
   generateTable(matrix, 'desc');
   generateSumaryTable(worldbank.computeStats(matrix), searchMutipleCountry());
 });
 
 const generateSumaryTable = (prom, arrCountry) => {
-  const bodyProm = document.getElementsByTagName('body')[0];
+  const bodyProm = document.getElementById('table-prom');
   const tablaProm = document.createElement('TABLE');
   const node = document.createElement('CAPTION');
   const textnode = document.createTextNode('Promedio por paises');
@@ -46,15 +50,14 @@ const generateSumaryTable = (prom, arrCountry) => {
   tablaProm.appendChild(node);
   // appends <table> into <body>
   bodyProm.appendChild(tablaProm);
-  // modifica el atributo "border" de la tabla y lo fija a "2";
-  tablaProm.setAttribute('border', '2');
+
 
   // document.getElementById('prom').appendChild(node);
 };
 
 const generateTable = (matr, origin) => {
   // Obtener la referencia del elemento body
-  const body = document.getElementsByTagName('body')[0];
+  const body = document.getElementById('table-container');
   // Crea un elemento <table> y un elemento <tbody>
   // let caption =worldbank.indicatiorsCaption();
   const tabla = document.createElement('TABLE');
@@ -115,8 +118,6 @@ const generateTable = (matr, origin) => {
   tabla.appendChild(tblBody);
   // appends <table> into <body>
   body.appendChild(tabla);
-  // modifica el atributo "border" de la tabla y lo fija a "2";
-  tabla.setAttribute('border', '2');
 };
 
 let addTableCaption = (indi) => {

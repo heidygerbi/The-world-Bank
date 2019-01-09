@@ -8,7 +8,7 @@
 }
 body{
     background-attachment: fixed;
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom: 20px;
  }
  h1{
@@ -31,7 +31,7 @@ label {
     text-decoration: none;
     text-align: center;
     float: left;
-    padding: 2%;
+    padding: 1%;
     margin: 0.3%;
     width: 48.7%;
     color: #fff;
@@ -46,27 +46,136 @@ label {
 #button-indicators li {
     display: inline;
  }
-#button-indicators li span {
-    font-size: 14px;
-    text-decoration: none;
-    float: left;
-    padding: 2%;
-    margin: 0.3%;
-    width: 48.7%;
+
+.sub-button{
+    font-weight: bold;
+    margin: 0.5em;
+    padding: 0.5em;
+    background: #99DFF9;
+    border-radius: 0px 30px 30px 0px;
+}
+#btn-submit{
+margin: 0.5em;
+padding: 0.5em;
+color: white;
+font-weight: bold;
+background: #002F53;
+border-radius: 5px;
+margin-left: 25%;
+}
+#container-btn-main{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    /*align-items: center;*/
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 5% 0 5%;
+}
+.btn-main{
+    margin-left: 0.2em;
+    margin-bottom: 0.2em;
+    padding: 0.8em;
     color: black;
-    border-radius: 5px;
-    background-color: #c4c4c4;
+    font-weight: bold;
+    background: #99DFF9;
+    width: 145px;
+    border: 0;
+    justify-content: center;
+    display: inline-block;
+
+    
+}
+.btn-main:hover {
+    background-color:#00AEEF;
+}
+/* tabla responsive*/
+/* .table-rwd {
+    font-size: .85em;
+    border: 1px solid rgba(181, 213, 144, 0.5);
+    color: #666;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto; }
+    .table-rwd td, .table-rwd th {
+      padding: .8em;
+      border-bottom: 1px solid rgba(181, 213, 144, 0.5); }
+    .table-rwd th {
+      background: #1A8CFF;
+      color: #fff;
+      font-weight: normal;
+      text-align: right; }
+    .table-rwd td {
+      text-align: right; }
+      .table-rwd td:before {
+        content: "$ ";
+        color: #1A8CFF; }
+      .table-rwd td:after {
+        content: ".00"; }
+      .table-rwd td:first-of-type {
+        text-align: left; }
+        .table-rwd td:first-of-type:before {
+          content: ""; }
+        .table-rwd td:first-of-type:after {
+          content: ""; }
+    .table-rwd tr:hover {
+      background: rgba(181, 213, 144, 0.2); }
+    .table-rwd tr td:nth-child(2n) {
+      background: rgba(181, 213, 144, 0.2); } */
+  
+  #table-container {
+    overflow-x:auto; }
+  
+  /* .table-rwd {
+    min-width: 900px; }
+    .table-rwd td:first-child {
+      position: absolute;
+      background: #fff;
+      width: 8em; }
+    .table-rwd th:first-child {
+      width: 8em; }
+    .table-rwd tr:hover td:first-child {
+      background: #1A8CFF;
+      color: #fff; }
+    .table-rwd tr:nth-child(2) td:first-child {
+      box-shadow: 0 -2.7em 0 -6px #1A8CFF, -6px -2.7em 0 -6px #1A8CFF; } */
+/* fin tabla responsive*/
+
+table {
+  border-collapse: collapse;
+  margin: 3em 0 3em 5em;
 }
 
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
+tr:hover {background-color:#f5f5f5;}
 footer{
     background-color: black; 
     margin:auto;
     color: white;
 }
+legend{
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+color: #FFA100;
+
+}
+fieldset{
+border: 1px solid #B4B0B0;
+box-sizing: border-box;
+border-radius: 15px;    
+}
+#menu-left{
+    border-right: 0.1em solid #C4C4C4;
+}
 /* slider */
  .slider{
-    width: 95%;
+    width: 100%;
     margin: auto;
     overflow: hidden;
 }
@@ -74,6 +183,9 @@ footer{
     display: block;
 }
 .hide {
+    display: none;
+}
+#btn-order {
     display: none;
 }
 .slider ul{
@@ -116,6 +228,8 @@ li span {
     float: left;
     min-height: 7x;
     padding: 12px;
+/*    border-color: red;
+    border-style: solid;*/
 }
 .col-1{
     width: 8.33333333%
