@@ -37,6 +37,7 @@
   "extends": "eslint:recommended",
   "globals": {
     "WORLDBANK": false,
-    "worldbank": false
+    "worldbank": false,
+    "$": false
   }
 }
