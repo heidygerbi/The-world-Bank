@@ -202,16 +202,6 @@ const printMainIndicators = (paramIndicator) => {
   document.getElementById('caption').innerHTML = worldbank.caption(ind2);
   matrix = worldbank.filterData(arrCountry, arrYear, ind2);
   generateTableMainIndicators(matrix, 'table-wrapper');
-  colletionsPer = matrix[0];
-  colletionsChl = matrix[1];
-  colletionsMex = matrix[2];
-  colletionsBra = matrix[3];
-  console.log('Matriz ' + matrix[0]);
-  console.log('colletionsPer ' + colletionsPer);
-  console.log('colletionsChl ' + colletionsChl);
-  console.log('colletionsMex ' + colletionsMex);
-  console.log('colletionsBra ' + colletionsBra);
-  grafica(matrix);
 };
 document.onclick = captureClick;
 function captureClick(element) {
@@ -304,77 +294,4 @@ const generateTableMainIndicators = (matr, origin) => {
   tabla.appendChild(tblBody);
   // appends <table> into <body>
   body.appendChild(tabla);
-};
-// crear grafica de barra
-const grafica = (matrix) =>{
-  $(document).ready(function() {
-    let datos = {
-    labels: ['2012', '2013', '2014', '2015', '2016', '2017'],
-    datasets: [{
-      label: 'PER',
-      backgroundColor: 'rgba(220,220,220,0.5)',
-      data: matrix[0]
-    },
-    {
-
-      label: 'CHL',
-      backgroundColor: 'rgba(151,187,205,0.5)',
-      data: matrix[1]
-    },
-    {
-      label: 'MEX',
-      backgroundColor: 'rgba(151,100,205,0.5)',
-      data: matrix[2]
-    },
-    {
-      label: 'BRA',
-      backgroundColor: 'rgba(151,200,205,0.5)',
-      data: matrix[3]
-    }
-    ]
-    };
-
-
-    let canvas = document.getElementById('chart').getContext('2d');
-    window.bar = new Chart(canvas, {
-      type: 'bar',
-      data: datos,
-      options: {
-        elements: {
-          rectangle: {
-            borderWidth: 1,
-            borderColor: 'rgb(0,255,0)',
-            borderSkipped: 'bottom'
-          }
-        },
-        responsive: true,
-        // title: {
-        //   display: true,
-        //   text: caption
-        // }
-      }
-    });
-
-    // setInterval(function () {
-    //   var newData = [
-    //     [getRandom(), getRandom(), getRandom(), getRandom() * -1, getRandom()],
-    //     [getRandom(), getRandom(), getRandom(), getRandom(), getRandom()],
-    //     [getRandom(), getRandom(), getRandom(), getRandom(), getRandom()],
-    //   ];
-
-    //   $.each(datos.datasets, function (i, dataset) {
-    //     dataset.data = newData[i];
-    //   });
-    //   window.bar.update();
-    // }, 5000);
-
-
-
-
-    // function getRandom() {
-    //   return Math.round(Math.random() * 100);
-    // }
-
-
-  });
 };
