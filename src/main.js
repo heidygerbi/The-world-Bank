@@ -1,8 +1,15 @@
-﻿// let caption = '';
-let matrix = [];
+﻿let matrix = [];
 let dateRange = [];
 let ElementClick = '';
 let bool = true;
+let dataMundial;
+
+// Fetch
+fetch('https://raw.githubusercontent.com/heidygerbi/lim-2018-11-bc-core-am-data-lovers/prototype/src/data/worldbank/worldbank.json').then((response) => {
+  if (response.status === 200) return response.json();
+}).then((respuestaJson) => {
+  dataMundial = respuestaJson;
+});
 // btn-submit
 const btnSubmit = document.getElementById('btn-submit');
 let btnIndex = document.getElementById('btn-index');
@@ -12,7 +19,7 @@ btnSubmit.addEventListener('click', () => {
   document.getElementById('btn-order').style.display = 'block';
   document.getElementById('table-container').innerHTML = '';
   document.getElementById('table-prom').innerHTML = '';
-  matrix = worldbank.filterData(searchMutipleCountry(), searchRangeYear(), indicator());
+  matrix = worldbank.filterData(searchMutipleCountry(), searchRangeYear(), indicator(), dataMundial);
   generateTable(matrix, 'table-container');
   generateSumaryTable(worldbank.computeStats(matrix), searchMutipleCountry());
 });
@@ -55,11 +62,9 @@ const generateSumaryTable = (prom, arrCountry) => {
 };
 
 const generateTable = (matr, origin) => {
-
   document.getElementById(origin).innerHTML = '';
-
   const indicator2 = indicator();
-  const caption = worldbank.caption(indicator2);
+  const caption = worldbank.caption(indicator2, dataMundial);
   // Obtener la referencia del elemento body
   const body = document.getElementById(origin);
   // Crea un elemento <table> y un elemento <tbody>
@@ -191,28 +196,17 @@ btnSearch.addEventListener('click', () => {
   hidenDiv('search', 'index');
 });
 
-
-
 const printMainIndicators = (paramIndicator) => {
   const arrCountry = ['PER', 'CHL', 'MEX', 'BRA'];
   const arrYear = ['2012', '2017'];
   document.getElementById('caption').innerHTML = '';
-  document.getElementById('table-wrapper').innerHTML = '';
   const ind2 = document.getElementById(paramIndicator).value;
-  document.getElementById('caption').innerHTML = worldbank.caption(ind2);
-  matrix = worldbank.filterData(arrCountry, arrYear, ind2);
+  document.getElementById('caption').innerHTML = worldbank.caption(ind2, dataMundial);
+  matrix = worldbank.filterData(arrCountry, arrYear, ind2, dataMundial);
   generateTableMainIndicators(matrix, 'table-wrapper');
-  colletionsPer = matrix[0];
-  colletionsChl = matrix[1];
-  colletionsMex = matrix[2];
-  colletionsBra = matrix[3];
-  console.log('Matriz ' + matrix[0]);
-  console.log('colletionsPer ' + colletionsPer);
-  console.log('colletionsChl ' + colletionsChl);
-  console.log('colletionsMex ' + colletionsMex);
-  console.log('colletionsBra ' + colletionsBra);
   grafica(matrix);
 };
+
 document.onclick = captureClick;
 function captureClick(element) {
   // Funcion para capturar el click del raton
@@ -225,24 +219,24 @@ function captureClick(element) {
   ElementClick = click;
   // Una prueba con salida en consola
   switch (ElementClick.id) {
-    case 'SH':
-      printMainIndicators(ElementClick.id);
-      break;
-    case 'SG':
-      printMainIndicators(ElementClick.id);
-      break;
-    case 'SP':
-      printMainIndicators(ElementClick.id);
-      break;
-    case 'IC':
-      printMainIndicators(ElementClick.id);
-      break;
-    case 'ICF':
-      printMainIndicators(ElementClick.id);
-      break;
-    case 'COV':
-      printMainIndicators(ElementClick.id);
-      break;
+  case 'sh':
+    printMainIndicators(ElementClick.id);
+    break;
+  case 'sg':
+    printMainIndicators(ElementClick.id);
+    break;
+  case 'sp':
+    printMainIndicators(ElementClick.id);
+    break;
+  case 'ic':
+    printMainIndicators(ElementClick.id);
+    break;
+  case 'icf':
+    printMainIndicators(ElementClick.id);
+    break;
+  case 'cov':
+    printMainIndicators(ElementClick.id);
+    break;
   }
 }
 // btn-order-asc
@@ -251,23 +245,16 @@ btnOrderAsc.addEventListener('click', () => {
   let resultMatrix = worldbank.sortData(matrix, 'asc');
   generateTable(resultMatrix, 'table-container');
 });
-
-
-
 const generateTableMainIndicators = (matr, origin) => {
-
   document.getElementById(origin).innerHTML = '';
   // Obtener la referencia del elemento body
   const body = document.getElementById(origin);
   // Crea un elemento <table> y un elemento <tbody>
   const tabla = document.createElement('TABLE');
   const tblBody = document.createElement('TBODY');
-
-
   const arrCountry = ['PER', 'CHL', 'MEX', 'BRA'];
   const range = ['2012', '2017'];
   const hileraYear = document.createElement('TR');
-
   for (let i = range[0] - 1; i <= range[1]; i++) {
     const celdaYear = document.createElement('TH');
     let textoCeldaYear = document.createTextNode(i);
@@ -276,9 +263,7 @@ const generateTableMainIndicators = (matr, origin) => {
     }
     celdaYear.appendChild(textoCeldaYear);
     hileraYear.appendChild(celdaYear);
-
   }
-
   tblBody.appendChild(hileraYear);
   // Crea las celdas
   for (let i = 0; i < matr.length; i++) {
@@ -307,41 +292,39 @@ const generateTableMainIndicators = (matr, origin) => {
 };
 // crear grafica de barra
 const grafica = (matrix) => {
-  $(document).ready(function() {
-    let datos = {
-    labels: ['2012', '2013', '2014', '2015', '2016', '2017'],
-    datasets: [{
-      label: 'PER',
-      backgroundColor: 'rgba(220,220,220,0.5)',
-      data: matrix[0]
-    },
-    {
-
-      label: 'CHL',
-      backgroundColor: 'rgba(151,187,205,0.5)',
-      data: matrix[1]
-    },
-    {
-      label: 'MEX',
-      backgroundColor: 'rgba(151,100,205,0.5)',
-      data: matrix[2]
-    },
-    {
-      label: 'BRA',
-      backgroundColor: 'rgba(151,200,205,0.5)',
-      data: matrix[3]
-    }
-    ]
-    };
-
-
-    let canvas = document.getElementById('chart').getContext('2d');
-    window.bar = new Chart(canvas, {
-      type: 'bar',
-      data: datos,
-      options: {
-        responsive: true,
+  const ctx = document.getElementById('chart').getContext('2d');
+  document.getElementById('chart').innerHTML = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2012', '2013', '2014', '2015', '2016', '2017'],
+      datasets: [{
+        label: 'PER',
+        borderColor: 'rgba(220,220,220,0.5)',
+        backgroundColor: 'rgba(0,0,0,0)',
+        data: matrix[0]
+      },
+      {
+        label: 'CHL',
+        borderColor: 'rgba(151,187,205,0.5)',
+        backgroundColor: 'rgba(0,0,0,0)',
+        data: matrix[1]
+      },
+      {
+        label: 'MEX',
+        borderColor: 'rgba(151,100,205,0.5)',
+        backgroundColor: 'rgba(0,0,0,0)',
+        data: matrix[2]
+      },
+      {
+        label: 'BRA',
+        borderColor: 'rgba(151,200,205,0.5)',
+        backgroundColor: 'rgba(0,0,0,0)',
+        data: matrix[3]
       }
-    });
+      ]
+    },
+    options: {
+      responsive: true
+    }
   });
 };

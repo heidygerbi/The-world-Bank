@@ -1,27 +1,28 @@
 /* *********** FUNCIONES PARA CREAR TABLAS DINÁMICAS *********** */
 // Función para conocer caption de indicators
-
 const indicatiorsCaption = (indicatorsArr, ind) => {
   let indicatorNameArr = [];
   indicatorNameArr = indicatorsArr.filter(populationElement => populationElement.indicatorCode === ind);
   return indicatorNameArr;
 };
-const caption = (ind) => {
-  const dir = WORLDBANK.PER.indicators;
+const caption = (ind, dtaMundial) => {
+  // const dir = WORLDBANK.PER.indicators;
+  const dir = dtaMundial.PER.indicators;
   let indicatorNameArr = [];
   indicatorNameArr = dir.filter(populationElement => populationElement.indicatorCode === ind);
   return (indicatorNameArr[0].indicatorName);
 };
 /* *********** FUNCIONES ESPECIALIZADAS *********** */
 // Función con filterData 
-const filterData = (country, arrYear, ind) => {
+const filterData = (country, arrYear, ind, dtaMundial) => {
   let matrix = [];
   country.forEach((element) => {
     let indicatorDateArr = [];
     let indicatorResult = [];
     let indicatorNameArr = [];
-    const indicatorsArr = WORLDBANK[element].indicators;
-    indicatorNameArr = indicatiorsCaption(indicatorsArr, ind);
+    // const indicatorsArr = WORLDBANK[element].indicators;
+    const indicatorsArr = dtaMundial[element].indicators;
+    indicatorNameArr = indicatiorsCaption(indicatorsArr, ind, dtaMundial);
     indicatorDateArr = indicatorNameArr[0].data;
     for (let prop in indicatorDateArr) {
       if (prop >= arrYear[0] && prop <= arrYear[1]) { // prop hace referencia a la propiedad del objeto (en este caso años)
@@ -65,7 +66,6 @@ const sortData = (data, sortOrder) => {
     }
     return reversed;
   }
-
 };
 
 
