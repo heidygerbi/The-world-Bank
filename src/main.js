@@ -204,10 +204,7 @@ const printMainIndicators = (paramIndicator) => {
   document.getElementById('caption').innerHTML = worldbank.caption(ind2, dataMundial);
   matrix = worldbank.filterData(arrCountry, arrYear, ind2, dataMundial);
   generateTableMainIndicators(matrix, 'table-wrapper');
-<<<<<<< HEAD
-=======
   grafica(matrix);
->>>>>>> 0a967849412266ff0af002bf19bbe23cce65ee8e
 };
 
 document.onclick = captureClick;
@@ -292,8 +289,6 @@ const generateTableMainIndicators = (matr, origin) => {
   tabla.appendChild(tblBody);
   // appends <table> into <body>
   body.appendChild(tabla);
-<<<<<<< HEAD
-=======
 };
 // crear grafica de barra
 const grafica = (matrix) => {
@@ -332,5 +327,4 @@ const grafica = (matrix) => {
       responsive: true
     }
   });
->>>>>>> 0a967849412266ff0af002bf19bbe23cce65ee8e
 };
