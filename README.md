@@ -28,6 +28,9 @@ Para diseñar este producto tecnológico lo primero que se hizo fue:
 * Luego de una selección de acuerdo al alcance de la data surgen las ***historias de usuario finales #2***
 ![image](https://user-images.githubusercontent.com/32286800/50734012-cbcba200-1165-11e9-9cbd-65a655ca2f95.png)
 
+* cuyas definición de terminado son:  ***Definición de Terminado***
+![image](![image](https://user-images.githubusercontent.com/32286800/50985791-2dc43880-14d3-11e9-81c6-45d25340238c.png)
+
 * Con lo cual, creamos el ***Prototipo #2***
 
 ### **Prototipado de baja fidelidad**
@@ -42,13 +45,13 @@ Para diseñar este producto tecnológico lo primero que se hizo fue:
 https://zpl.io/VQKdv94
 
 Vista #1
-![image](https://user-images.githubusercontent.com/32286800/50733820-dcc6e400-1162-11e9-9db3-db8072ec92ce.png)
+![image](https://user-images.githubusercontent.com/32286800/50986791-c22f9a80-14d5-11e9-87cb-0437bb0ff160.png)
 
 Vista #2 - Sin carga de data
-![image](https://user-images.githubusercontent.com/32286800/50733830-0c75ec00-1163-11e9-9b36-7e274d067bc0.png)
+![image](https://user-images.githubusercontent.com/32286800/50986810-ce1b5c80-14d5-11e9-89a2-8ded73ee9303.png)
 
 Vista #2 - Con carga de data
-![image](https://user-images.githubusercontent.com/32286800/50733838-29aaba80-1163-11e9-943c-7445155ec62c.png)
+![image](https://user-images.githubusercontent.com/32286800/50986886-03c04580-14d6-11e9-9ca7-df25f5f94884.png)
 
 VERSION MOVIL
 
